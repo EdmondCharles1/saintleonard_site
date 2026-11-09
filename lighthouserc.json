@@ -1,0 +1,38 @@
+{
+  "ci": {
+    "collect": {
+      "startServerCommand": "node scripts/serve-out.mjs 4175",
+      "startServerReadyPattern": "out/ servi",
+      "url": [
+        "http://localhost:4175/",
+        "http://localhost:4175/programmes/",
+        "http://localhost:4175/admissions/",
+        "http://localhost:4175/contact/"
+      ],
+      "numberOfRuns": 3,
+      "settings": {
+        "formFactor": "mobile",
+        "screenEmulation": { "mobile": true, "width": 390, "height": 844, "deviceScaleFactor": 2, "disabled": false },
+        "throttlingMethod": "simulate",
+        "throttling": {
+          "rttMs": 150,
+          "throughputKbps": 3072,
+          "cpuSlowdownMultiplier": 4
+        },
+        "onlyCategories": ["performance", "accessibility", "best-practices", "seo"]
+      }
+    },
+    "assert": {
+      "assertions": {
+        "largest-contentful-paint": ["error", { "maxNumericValue": 3000, "aggregationMethod": "median-run" }],
+        "cumulative-layout-shift": ["error", { "maxNumericValue": 0.1, "aggregationMethod": "median-run" }],
+        "categories:accessibility": ["error", { "minScore": 0.95 }],
+        "categories:seo": ["warn", { "minScore": 0.9 }]
+      }
+    },
+    "upload": {
+      "target": "filesystem",
+      "outputDir": "./lighthouse-rapports"
+    }
+  }
+}

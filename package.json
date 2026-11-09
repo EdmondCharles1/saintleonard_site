@@ -11,8 +11,12 @@
     "serve": "node scripts/serve-out.mjs",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "test:csp": "playwright test",
-    "check:contenu": "node scripts/verifier-contenu.mjs"
+    "test:csp": "playwright test tests/csp.spec.ts",
+    "check:contenu": "node scripts/verifier-contenu.mjs",
+    "test:a11y": "playwright test tests/accessibilite.spec.ts",
+    "test:liens": "node scripts/verifier-liens.mjs",
+    "test:perf": "lhci autorun",
+    "images": "node scripts/optimiser-images.mjs"
   },
   "dependencies": {
     "clsx": "2.1.1",
@@ -23,6 +27,8 @@
     "tailwindcss-animate": "1.0.7"
   },
   "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
+    "@lhci/cli": "0.16.0",
     "@playwright/test": "1.63.0",
     "@types/node": "22.20.5",
     "@types/react": "19.3.0",
@@ -31,12 +37,14 @@
     "eslint": "9.39.5",
     "eslint-config-next": "16.4.5",
     "postcss": "8.5.32",
+    "sharp": "0.35.5",
     "tailwindcss": "3.4.19",
     "typescript": "5.9.3"
   },
   "overrides": {
     "@typescript-eslint/typescript-estree": {
       "minimatch": "11.0.5"
-    }
+    },
+    "basic-ftp": "6.2.6"
   }
 }
