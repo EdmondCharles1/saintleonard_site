@@ -22,6 +22,8 @@ export interface InfosSite {
     whatsapp: string | null;
     /** Format affiché, ex. +509 3700-0000. */
     telephone: string | null;
+    /** Adresse postale affichée, sur plusieurs lignes. */
+    adresse: string[] | null;
   };
 }
 
@@ -64,5 +66,18 @@ export interface Actualite {
   date: string;
   resume: string;
   /** Chemin sous /public, ex. /images/actualites/rentree.webp */
-  image?: { src: string; alt: string; largeur: number; hauteur: number };
+  image?: ImageLocale;
+}
+
+export interface ImageLocale {
+  /** Chemin sous /public, ex. /images/batiment-principal.webp */
+  src: string;
+  alt: string;
+  largeur: number;
+  hauteur: number;
+}
+
+export interface EtapeCalendrier {
+  periode: string;
+  libelle: string;
 }
