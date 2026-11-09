@@ -11,7 +11,8 @@
     "serve": "node scripts/serve-out.mjs",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "test:csp": "playwright test"
+    "test:csp": "playwright test",
+    "check:contenu": "node scripts/verifier-contenu.mjs"
   },
   "dependencies": {
     "clsx": "2.1.1",

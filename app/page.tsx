@@ -1,16 +1,19 @@
-import { EnPreparation } from "@/components/layout/en-preparation";
-import { site } from "@/content/site";
+import { ApercuProgrammes } from "@/components/sections/apercu-programmes";
+import { AppelInscription } from "@/components/sections/appel-inscription";
+import { ChiffresCles } from "@/components/sections/chiffres-cles";
+import { DernieresActualites } from "@/components/sections/dernieres-actualites";
+import { Hero } from "@/components/sections/hero";
 
 export default function Accueil() {
+  // Calculé au build : le site statique est reconstruit à chaque publication.
+  const anneeCourante = new Date().getFullYear();
   return (
-    <section className="container py-16">
-      <h1 className="heading-1 text-primary-800">{site.nom}</h1>
-      <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-        École fondamentale et secondaire, de la 1re AF à la NS4.
-      </p>
-      <div className="mt-8">
-        <EnPreparation quoi="photo, slogan, chiffres clés, aperçu des cycles, actualités et appel à l'inscription" />
-      </div>
-    </section>
+    <>
+      <Hero />
+      <ChiffresCles anneeCourante={anneeCourante} />
+      <ApercuProgrammes />
+      <DernieresActualites />
+      <AppelInscription />
+    </>
   );
 }

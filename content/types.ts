@@ -24,3 +24,45 @@ export interface InfosSite {
     telephone: string | null;
   };
 }
+
+export interface Niveau {
+  code: string;
+  libelle: string;
+}
+
+export interface Cycle {
+  id: string;
+  nom: string;
+  resume: string;
+  niveaux: Niveau[];
+}
+
+export interface Ordre {
+  id: "fondamental" | "secondaire";
+  nom: string;
+  resume: string;
+  cycles: Cycle[];
+}
+
+export interface Filiere {
+  sigle: string;
+  /** Nom complet : à confirmer par l'école avant la mise en ligne. */
+  nom: string;
+}
+
+export interface ChiffreCle {
+  valeur: string | null;
+  libelle: string;
+  /** Obligatoire pour un chiffre qui n'est pas structurel (D-17). */
+  source?: string;
+}
+
+export interface Actualite {
+  slug: string;
+  titre: string;
+  /** Format AAAA-MM-JJ. */
+  date: string;
+  resume: string;
+  /** Chemin sous /public, ex. /images/actualites/rentree.webp */
+  image?: { src: string; alt: string; largeur: number; hauteur: number };
+}

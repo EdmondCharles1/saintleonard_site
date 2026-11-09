@@ -8,7 +8,7 @@ export default function Page() {
   return (
     <>
       <PageTitle titre="À propos" />
-      <section className="container py-10">
+      <section className="container px-4 sm:px-6 lg:px-8 py-10">
         <EnPreparation quoi="histoire, mission, vision, reconnaissance MENFP, infrastructures" />
       </section>
     </>

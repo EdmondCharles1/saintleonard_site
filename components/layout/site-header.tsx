@@ -8,7 +8,7 @@ import { navigation, site } from "@/content/site";
 export function SiteHeader() {
   return (
     <header className="border-b bg-background">
-      <div className="container flex items-center justify-between gap-4 py-3">
+      <div className="container px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4 py-3">
         <Link href="/" className="font-serif text-lg font-bold text-primary-700">
           {site.sigle}
           <span className="sr-only"> : {site.nom}, accueil</span>
