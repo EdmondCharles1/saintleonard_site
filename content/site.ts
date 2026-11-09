@@ -11,6 +11,7 @@ export const site: InfosSite = {
   contact: {
     whatsapp: A_FOURNIR,
     telephone: A_FOURNIR,
+    adresse: A_FOURNIR,
   },
 };
 
