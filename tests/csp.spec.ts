@@ -51,3 +51,21 @@ test("Un script injecté est bloqué par la CSP", async ({ page }) => {
   expect(await page.evaluate(() => (window as unknown as { __injecte?: boolean }).__injecte)).toBeUndefined();
   expect(violations.length).toBeGreaterThan(0);
 });
+
+test("Accueil : les cinq sections sont présentes", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Cours Privé Mixte Saint-Léonard");
+  for (const titre of ["L'école en chiffres", "Nos programmes", "Actualités", "Inscriptions 2027-2028"]) {
+    await expect(page.getByRole("heading", { level: 2, name: titre })).toBeVisible();
+  }
+  await expect(page.getByRole("link", { name: "Se connecter" })).toHaveAttribute("href", "https://app.saintleonard.edu.ht");
+});
+
+test("Programmes : 13 niveaux, 4 filières, 2 examens officiels", async ({ page }) => {
+  await page.goto("/programmes/");
+  await expect(page.locator("abbr")).toHaveCount(13);
+  for (const sigle of ["LLA", "SES", "SMP", "SVT"]) {
+    await expect(page.getByText(sigle, { exact: true })).toBeVisible();
+  }
+  await expect(page.getByText(/^Examens officiels de/)).toHaveCount(2);
+});
