@@ -69,3 +69,25 @@ test("Programmes : 13 niveaux, 4 filières, 2 examens officiels", async ({ page 
   }
   await expect(page.getByText(/^Examens officiels de/)).toHaveCount(2);
 });
+
+const SECTIONS: Record<string, string[]> = {
+  "/a-propos/": ["Notre histoire", "Mission et vision", "Reconnaissance officielle", "Nos installations"],
+  "/admissions/": ["Calendrier des inscriptions", "Pièces à fournir", "Nous contacter pour une inscription"],
+  "/contact/": ["Coordonnées", "Plan d'accès"],
+};
+
+for (const [chemin, titres] of Object.entries(SECTIONS)) {
+  test(`${chemin} : sections attendues`, async ({ page }) => {
+    await page.goto(chemin);
+    for (const titre of titres) {
+      await expect(page.getByRole("heading", { level: 2, name: titre })).toBeVisible();
+    }
+  });
+}
+
+test("Aucun lien mailto en V1 (pas d'adresse courriel)", async ({ page }) => {
+  for (const chemin of ["/", "/a-propos/", "/programmes/", "/admissions/", "/actualites/", "/contact/"]) {
+    await page.goto(chemin);
+    await expect(page.locator('a[href^="mailto:"]')).toHaveCount(0);
+  }
+});
